@@ -134,7 +134,7 @@ This project is open source and available under the MIT License. See LICENSE fil
 
 ## 📧 Contact
 
-For questions or support, please reach out to [your contact information] or open an issue on GitHub.
+For questions or support, please reach out to maryamjavaidbcs164@gmail.com or open an issue on GitHub.
 
 ## 🙏 Acknowledgments
 
@@ -144,4 +144,4 @@ For questions or support, please reach out to [your contact information] or open
 
 ---
 
-**Last Updated**: June 2026
+**Last Updated**:June 22, 2026
