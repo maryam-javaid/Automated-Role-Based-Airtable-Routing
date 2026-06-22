@@ -1,0 +1,852 @@
+{
+  "name": "Automated Role-Based Airtable Routing",
+  "nodes": [
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.fields['Profession '] }}",
+                    "rightValue": "Ai Engineer",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "f0ea844a-301c-45ea-a97d-b86c66afb2c4"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "66bb97b1-c47d-4d83-9767-15bdcf79a222",
+                    "leftValue": "={{ $json.fields['Profession '] }}",
+                    "rightValue": "Graphic Designer",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "1454bb9f-3e0e-4d02-ace8-02ba1e4e3757",
+                    "leftValue": "={{ $json.fields['Profession '] }}",
+                    "rightValue": "DataScientist",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -1136,
+        -3792
+      ],
+      "id": "69abc00d-a9c9-49cf-8a01-4d1b35c6dbe6",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "formTitle": "My form",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name"
+            },
+            {
+              "fieldLabel": "Looks"
+            },
+            {
+              "fieldLabel": "Profession",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Ai Engineer"
+                  },
+                  {
+                    "option": "DataScientist"
+                  },
+                  {
+                    "option": "Graphic Designer"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        -1584,
+        -3776
+      ],
+      "id": "05486d20-1465-4a70-8840-9776f725233e",
+      "name": "On form submission",
+      "webhookId": "4bca08f0-7f26-42fd-8dae-0f5e24720f80"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appDB80j8BLQc4OGd",
+          "mode": "list",
+          "cachedResultName": "N8N Basa",
+          "cachedResultUrl": "https://airtable.com/appDB80j8BLQc4OGd"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbliX1DOQRpeoqNCr",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appDB80j8BLQc4OGd/tbliX1DOQRpeoqNCr"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.Name }}",
+            "Profession ": "={{ $json.Profession }}",
+            "Looks": "={{ $json.Looks }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Looks",
+              "displayName": "Looks",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Profession ",
+              "displayName": "Profession ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Ai Engineer",
+                  "value": "Ai Engineer"
+                },
+                {
+                  "name": "DataScientist",
+                  "value": "DataScientist"
+                },
+                {
+                  "name": "Graphic Designer",
+                  "value": "Graphic Designer"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        -1360,
+        -3776
+      ],
+      "id": "be0c9fb6-4817-4260-8c0f-5d9104b9b44c",
+      "name": "Update in Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "TmGSJsraFGpCscrY",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appDB80j8BLQc4OGd",
+          "mode": "list",
+          "cachedResultName": "N8N Basa",
+          "cachedResultUrl": "https://airtable.com/appDB80j8BLQc4OGd"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbliX1DOQRpeoqNCr",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appDB80j8BLQc4OGd/tbliX1DOQRpeoqNCr"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Update in Airtable').item.json.id }}",
+            "Rating": 1
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Looks",
+              "displayName": "Looks",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Profession ",
+              "displayName": "Profession ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Ai Engineer",
+                  "value": "Ai Engineer"
+                },
+                {
+                  "name": "DataScientist",
+                  "value": "DataScientist"
+                },
+                {
+                  "name": "Graphic Designer",
+                  "value": "Graphic Designer"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Rating",
+              "displayName": "Rating",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        -912,
+        -3584
+      ],
+      "id": "38d19b16-28cd-4223-a727-3fe82956a8bf",
+      "name": "DataScientist Rating",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "TmGSJsraFGpCscrY",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appDB80j8BLQc4OGd",
+          "mode": "list",
+          "cachedResultName": "N8N Basa",
+          "cachedResultUrl": "https://airtable.com/appDB80j8BLQc4OGd"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbliX1DOQRpeoqNCr",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appDB80j8BLQc4OGd/tbliX1DOQRpeoqNCr"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Update in Airtable').item.json.id }}",
+            "Rating": 3
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Looks",
+              "displayName": "Looks",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Profession ",
+              "displayName": "Profession ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Ai Engineer",
+                  "value": "Ai Engineer"
+                },
+                {
+                  "name": "DataScientist",
+                  "value": "DataScientist"
+                },
+                {
+                  "name": "Graphic Designer",
+                  "value": "Graphic Designer"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Rating",
+              "displayName": "Rating",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        -912,
+        -3776
+      ],
+      "id": "5d9afa8e-a7f7-49a4-b123-7bfd3581d114",
+      "name": "GraphicDesigner Rating ",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "TmGSJsraFGpCscrY",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appDB80j8BLQc4OGd",
+          "mode": "list",
+          "cachedResultName": "N8N Basa",
+          "cachedResultUrl": "https://airtable.com/appDB80j8BLQc4OGd"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbliX1DOQRpeoqNCr",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appDB80j8BLQc4OGd/tbliX1DOQRpeoqNCr"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Update in Airtable').item.json.id }}",
+            "Rating": 5
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Looks",
+              "displayName": "Looks",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Profession ",
+              "displayName": "Profession ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Ai Engineer",
+                  "value": "Ai Engineer"
+                },
+                {
+                  "name": "DataScientist",
+                  "value": "DataScientist"
+                },
+                {
+                  "name": "Graphic Designer",
+                  "value": "Graphic Designer"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Rating",
+              "displayName": "Rating",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        -912,
+        -3968
+      ],
+      "id": "479df0fa-fda1-4504-a0d5-030da1836cf9",
+      "name": "Ai Engineer Rating",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "TmGSJsraFGpCscrY",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=I want you to act like the best poem creator and craete a two line peom based on the deatils given belo, only two line. it should be simple and easy.\n\ni want u to add these deatils in the poem:\n Name:{{ $json.fields.Name }}\n Looks:{{ $json.fields.Looks }}\n Profession: {{ $json.fields['Profession '] }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -688,
+        -3776
+      ],
+      "id": "517b1ae3-a203-4eb5-9c35-c3dc9601f046",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appDB80j8BLQc4OGd",
+          "mode": "list",
+          "cachedResultName": "N8N Basa",
+          "cachedResultUrl": "https://airtable.com/appDB80j8BLQc4OGd"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbliX1DOQRpeoqNCr",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appDB80j8BLQc4OGd/tbliX1DOQRpeoqNCr"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Poem": "={{ $json.output }}",
+            "id": "={{ $('Update in Airtable').item.json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Looks",
+              "displayName": "Looks",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Profession ",
+              "displayName": "Profession ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Ai Engineer",
+                  "value": "Ai Engineer"
+                },
+                {
+                  "name": "DataScientist",
+                  "value": "DataScientist"
+                },
+                {
+                  "name": "Graphic Designer",
+                  "value": "Graphic Designer"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Rating",
+              "displayName": "Rating",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Poem",
+              "displayName": "Poem",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        -336,
+        -3776
+      ],
+      "id": "9eed4bae-1eb4-40bf-a93f-543aad90c672",
+      "name": "Update record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "TmGSJsraFGpCscrY",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -688,
+        -3552
+      ],
+      "id": "85dc1c0d-8012-45ba-b2d2-6f7e902a5768",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "SZ2XoqEJ9DJuyrt4",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Update in Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Ai Engineer Rating",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "GraphicDesigner Rating ",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "DataScientist Rating",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update in Airtable": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GraphicDesigner Rating ": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Update record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DataScientist Rating": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ai Engineer Rating": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "74631b8e-7330-4005-a9e2-8f23f112bae8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5ae4401f7acc14895f003b35932ec8cfea2a4688abc1bafddf1a880f4c390ff8"
+  },
+  "nodeGroups": [],
+  "id": "hbe7YqP5GRAxBDGS",
+  "tags": []
+}
